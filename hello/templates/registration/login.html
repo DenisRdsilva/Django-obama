@@ -1,0 +1,46 @@
+{% extends "hello/layout.html" %} 
+{% block title %} Login {% endblock %} {% block content %} 
+<div>
+
+{% if next %} 
+{% if user.is_authenticated %}
+<p>
+  Your account doesn't have access to this page. To proceed, please login with
+  an account that has access.
+</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %} {% endif %}
+
+<div>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <div class="entrada">
+      <div class="user">
+        {{ form.username.label_tag }}<br />
+        {{ form.username }}
+      </div>
+
+      <div class="pass">
+        {{ form.password.label_tag }}<br />
+        {{ form.password }}
+      </div>
+      <input type="submit" value="Fazer Login" />
+    </div>
+
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+{% if form.errors %}
+<div class="cont">
+	<p>Your username or password didn't match. Please try again.</p>
+</div>
+{% endif %}  
+<div>
+	<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+</div>
+{% endblock %}

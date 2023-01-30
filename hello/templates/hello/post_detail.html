@@ -1,0 +1,18 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+        {% endif %}
+        <h2>{{ post.title }}</h2>
+        <p>{{post.content| safe}}</p>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        {% if user.is_authenticated %}
+            <button><a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Editar<span class="glyphicon glyphicon-pencil"></span></a></button>
+            <button><a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">Apagar<span class="glyphicon glyphicon-remove"></span></a></button>
+        {% endif %}
+    </div>
+{% endblock %}
