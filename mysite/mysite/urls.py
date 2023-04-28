@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from hello.views import post_list, post_detail, post_new, post_edit, post_delete
 
 urlpatterns = [
     path("", include("hello.urls")),
     path('admin/', admin.site.urls),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('post/', post_list, name='post_list'),
     path('post/<int:pk>/', post_detail, name='post_detail'),
     path('post/new/', post_new, name='post_new'),

@@ -1,7 +1,27 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
+
+    <style>
+        .col1 {
+            width: 60%;
+        }
+
+        .content {
+            height: 76%;
+        }
+        h2 a {
+            color: blue;
+            text-decoration: underline;
+        }
+        input {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+    </style>
+
     {% for post in posts %}
+
         <div class="post">
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
@@ -11,5 +31,6 @@
                 <p>Postado por {{post.author}} em {{ post.published_date }}<p/>
             </div>
         </div>
+        
     {% endfor %}
 {% endblock %}

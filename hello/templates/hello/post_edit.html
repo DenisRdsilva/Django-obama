@@ -1,6 +1,64 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
+
+    <style>
+        .row {
+            display: block;
+            background-color: lightgray;
+        }
+
+        p {
+            display: flex;
+            flex-direction: column;
+            margin: 0px;
+        }
+
+        label {
+            margin: 16px;
+        }
+
+        input {
+            width: 90%;
+            align-self: center;
+        }
+
+        textarea {
+            width: 90%;
+            align-self: center;
+        }
+
+        .col1 {
+            margin-bottom: 20px;
+        }
+
+        .col2 {
+            display: none;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+        header button {
+            margin-top: 0px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
+    
+          form button {
+            margin-left: 10px;
+          }
+    
+          .vertical-center {
+            align-self: center;
+          }
+    </style>
+
     <h2>Nova postagem</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}

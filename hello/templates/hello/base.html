@@ -1,124 +1,235 @@
 {% load static %}
 <html>
-    <head>
-        <style>
-            .message {
-                font-weight: 600;
-                color: blue;
-            }
-            
-            html, body {
-                margin: 0;
-                padding: 0;
-            }
-            
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 14px;
-                line-height: 1.42857143;
-                color: black;
-                background-color: white;
-                text-align: center;
-                width: 100%;
-            }
-            
-            .body-content {
-                height: 100%;
-            }
+  <head>
+    <title>Blog da Obama</title>
+    <style>
+      html,
+      body {
+        margin: 0px;
+        background: linear-gradient(to left, #ECECEC, #FAFAFA, #ECECEC);
+      }
 
-            header{
-                display: flex;
-                flex-flow: row;
-                width: 100%;
-                height: 100px;
-                vertical-align: middle;
-            }
-            
-            .page-header {
-                background-color: lightslategray;
-                margin-top: 0;
-                padding: 10px 10px 10px 10px;
-                width: 100%;
-            }
-            
-            .page-header h1 {
-                color: #FFdFF9;
-                text-decoration: none;
-                margin-left: 30px;
-                text-align: center;
-            }
-            
-            .content {
-                margin-left: 20px;
-            }
-            
-            h1, h2, h3, h4 {
-                font-family: Arial, Helvetica, sans-serif, cursive;
-            }
-            
-            .date {
-                color: #828282;
-            }
-            
-            .save {
-                text-align: center;
-                margin-top: 15px;
-                padding: 10px;
-            }
-            
-            .content {
-                margin-top: 50pt;
-            }
-            
-            .post-form textarea, .post-form input {
-                width: 100%;
-            }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to bottom, #5F9EA0, #B0C4DE);
+        height: 60px;
+        padding: 5px 25px 5px 25px;
+      }
 
-            
-            .top-menu, .top-menu:hover, .top-menu:visited {
-                background-color: rgb(117, 96, 134);
-                color: #FFdFF9;
-                font-size: 18pt;
-                width: 30%;
-            }
-            
-            .post {
-                margin-bottom: 70px;
-                
-            }
-            
-            .post h2 a, .post h2 a:visited {
-                color: #000000;
-            }
-            
-            a{
-                color: black;
-                text-decoration: none;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            {% if user.is_authenticated %}
-                <a href="{% url 'post_list' %}" class="page-header"><h1>Obama Blog</h1></a>
-                <a href="{% url 'post_new' %}" class="top-menu"><h3>Novo post</h3></a>
-            {% else %}
-                <a href="{% url 'post_list' %}" class="page-header"><h1>Obama Blog</h1></a>
-                <a href="{% url 'post_new' %}" class="top-menu"><h3>Login</h3></a>
-            {% endif %}
-        </header>
-        <div class="content">
-            <div class="row">
-                <div class="col-md-8">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
+      .page-header h1 {
+        color: #fff;
+        text-decoration: none;
+        font-size: 28px !important;
+        margin: 0;
+      }
+
+      .top-menu {
+        background-color: #5F9EA0;
+        color: #fff;
+        font-size: 18px;
+        padding: 5px;
+        border: solid 2px gray;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .top-menu:hover {
+        background-color: #8eb1c2;
+        border: solid 2px white;
+      }
+
+      img {
+        width: 400px !important;
+        object-fit: contain;
+      }
+
+      .content {
+        max-width: 960px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0 -10px;
+        justify-content: space-between;
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      button {
+        width: 100px;
+        height: 50px;
+      }
+
+      form {
+        margin-bottom: 0px;
+      }
+
+      .col1 {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        background-color: white;
+        padding: 10px 20px 20px 20px;
+        margin-top: 15px;
+        border-radius: 10px;
+      }
+
+      .col2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        padding: 0px 20px 0px 20px;
+        margin-top: 15px;
+        background-color: #ECECEC;
+        border-radius: 10px;
+        margin-left: auto;
+      }
+
+      .col2 img {
+        width: 130px !important;
+        padding-bottom: 40px;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      form button {
+        margin-left: 10px;
+      }
+
+      .vertical-center {
+        align-self: center;
+      }
+
+      input[type="search"] {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .choice-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .chip {
+        display: inline-block;
+        background-color: #f2f2f2;
+        color: #555;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .chip:hover {
+        background-color: #ccc;
+        color: #fff;
+      }
+
+      footer {
+        background: linear-gradient(to bottom, #5F9EA0, #B0C4DE);
+        color: white;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .page-header h1 {
+          font-size: 24px;
+        }
+
+        .top-menu {
+          font-size: 14pt;
+          padding: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      {% if user.is_authenticated %}
+      <a href="{% url 'post_list' %}" class="page-header"
+        ><h1>Obama Blog</h1></a
+      >
+
+      <div class='actions'>
+        <button class="top-menu"><a href="{% url 'post_new' %}">Novo post</a></button>
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="top-menu vertical-center"><a>Logout</a></button>
+        </form>
+        {% endif %}
+
+      </div>
+
+      {% else %}
+      <a href="{% url 'post_list' %}" class="page-header"
+        ><h1>Obama Blog</h1></a
+      >
+      <a href="{% url 'post_new' %}" class="top-menu"><h3>Login</h3></a>
+      {% endif %}
+    </header>
+    <div class="content">
+      <div class="row">
+        <div class="col1">{% block content %} {% endblock %}</div>
+
+        <div class="col2">
+          <img
+            src="https://obama.imd.ufrn.br/resources/imagens/logo-obama-2.png"
+          />
+          <form>
+            <input type="search" placeholder="Pesquisar..." />
+          </form>
+          <div class="choice-chips">
+            <span class="chip">Opção 1</span>
+            <span class="chip">Opção 2</span>
+            <span class="chip">Opção 3</span>
+          </div>
         </div>
-    <script>window.CKEDITOR_BASEPATH = "{% static '/ckeditor/ckeditor/' %}";</script>
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}" data-ckeditor-basepath="{% static 'ckeditor/ckeditor/' %}" id="ckeditor-init-script"></script>
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
-
-
-    </body>
-<html>
+      </div>
+    </div>
+    <script>
+      window.CKEDITOR_BASEPATH = "{% static '/ckeditor/ckeditor/' %}";
+    </script>
+    <script
+      type="text/javascript"
+      src="{% static 'ckeditor/ckeditor-init.js' %}"
+      data-ckeditor-basepath="{% static 'ckeditor/ckeditor/' %}"
+      id="ckeditor-init-script"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"
+    ></script>
+    <footer>
+      <p>&copy; 2022</p>
+    </footer>
+  </body>
+</html>

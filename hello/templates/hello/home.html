@@ -1,7 +1,17 @@
-{% extends "hello/layout.html" %}
-{% block title %}
-	Home
-{% endblock %}
+{% extends "hello/layout.html" %} 
+{% block title %} Home {% endblock %}
 {% block content %}
-	<p>Home page for the Visual Studio Code Django tutorial.</p>
+<div class="container">
+	<div class="row">
+		<div class="col col1">
+			<img class="my-image" width='250px' src='https://obama.imd.ufrn.br/resources/imagens/logo-principal.png'/>
+			<p class="my-paragraph">Administração do blog da Plataforma Obama</p>
+		</div>
+		<div class="col col2">
+			<h2 class="my-heading">Sobre Nós</h2>
+			<p class="my-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis, urna eu rhoncus congue, quam elit tristique nulla, ac bibendum velit justo eu massa.</p>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

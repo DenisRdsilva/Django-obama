@@ -1,6 +1,40 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
+
+    <style>
+        .row {
+            display: block;
+            background-color: lightgray;
+        }
+
+        .col1 {
+            margin-bottom: 20px;
+        }
+
+        .col2 {
+            display: none;
+        }
+
+        header button {
+            margin-top: 0px;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 5px;
+        }
+
+        .btn {
+            color: black;
+            font-size: 15px;
+        }
+
+        .content {
+            height: 76%;
+        }
+    </style>
+
     <div class="post">
         {% if post.published_date %}
         {% endif %}
@@ -11,8 +45,8 @@
             {{ post.published_date }}
         </div>
         {% if user.is_authenticated %}
-            <button><a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Editar<span class="glyphicon glyphicon-pencil"></span></a></button>
-            <button><a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">Apagar<span class="glyphicon glyphicon-remove"></span></a></button>
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><button>Editar</button><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><button>Apagar</button><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
     </div>
 {% endblock %}
