@@ -1,36 +1,43 @@
-{% extends 'hello/base.html' %}
+{% extends 'hello/base.html' %} {% block content %}
 
-{% block content %}
+<style>
+  .col1 {
+    width: 60%;
+    background-color: #ECECEC;
+  }
 
-    <style>
-        .col1 {
-            width: 60%;
-        }
+  .card {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    padding: 10px 20px 20px 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+  }
 
-        .content {
-            height: 76%;
-        }
-        h2 a {
-            color: blue;
-            text-decoration: underline;
-        }
-        input {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-    </style>
+  .content {
+    min-height: 76%;
+  }
+  h2 a {
+    color: blue;
+    text-decoration: underline;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+</style>
 
-    {% for post in posts %}
+{% for post in posts reversed %}
 
-        <div class="post">
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <p>{{post.content| safe}}</p>
-            <p>{{post.summary| safe}}</p>
-            <div class="date">
-                <p>Postado por {{post.author}} em {{ post.published_date }}<p/>
-            </div>
-        </div>
-        
-    {% endfor %}
-{% endblock %}
+<div class="post card">
+  <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+  <p>{{ post.text|linebreaksbr }}</p>
+  <p>{{post.content| safe}}</p>
+  <p>{{post.summary| safe}}</p>
+  <div class="date">
+    <p>Postado por {{post.author}} em {{ post.published_date }}</p>
+    <p />
+  </div>
+</div>
+
+{% endfor %} {% endblock %}
