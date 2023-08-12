@@ -3,7 +3,9 @@ const app = express();
 
 var cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');
